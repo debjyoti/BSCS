@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BSCS Community</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <div class="brand">BSCS Community</div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <% if alert %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong><%= alert %></strong>
+        </div>
+      <%end%>
+      <% if notice %>
+        <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong><%= notice %></strong>
+        </div>
+      <%end%>
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="span9">
+          <%= yield %>
+        </div>
+        <div class="span3">
+          <%= yield :right_side_panel %>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
