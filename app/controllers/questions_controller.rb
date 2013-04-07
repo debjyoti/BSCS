@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @question = Question.find(params[:id])
+    @answer = @question.answers.new()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   # GET /questions/new.json
   def new
-    @question = Question.new
+    @question = Question.new(:user_id => current_user.try(:id))
 
     respond_to do |format|
       format.html # new.html.erb
