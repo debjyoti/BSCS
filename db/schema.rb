@@ -11,24 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415073926) do
+ActiveRecord::Schema.define(:version => 20130415133513) do
 
   create_table "answers", :force => true do |t|
     t.text     "answer_text"
-    t.boolean  "correct"
-    t.integer  "votes"
     t.integer  "question_id"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "votes",       :default => 0
+    t.boolean  "correct",     :default => false
   end
 
   create_table "questions", :force => true do |t|
     t.text     "question_text"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "title"
+    t.integer  "votes",         :default => 0
   end
 
   create_table "users", :force => true do |t|
