@@ -10,9 +10,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
 
+  include CarrierWave::MimeTypes
+  process :set_content_type
+
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -48,11 +51,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  def filename
-    if original_filename 
-      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
-      "#{@name}.#{file.extension}"
-    end
-  end
+#  def filename
+#    if original_filename 
+#      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+#      "#{@name}.#{file.extension}"
+#    end
+#  end
 
 end
