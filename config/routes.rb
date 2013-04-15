@@ -1,4 +1,6 @@
 BSCS::Application.routes.draw do
+  get "profiles/show"
+
   devise_for :users
 
   root :to => 'questions#index'
