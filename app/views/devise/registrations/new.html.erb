@@ -7,7 +7,10 @@
     <%= f.text_field :name %></div>
 
   <div><%= f.label :image, "Profile Picture" %>
-    <%= f.file_field :image %></div><br />
+    <%= image_tag @user.image_url(:thumb).to_s, class: "image-polaroid" if @user.image? %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div><br />
 
   <div><%= f.label :email %>
     <%= f.email_field :email %></div>
