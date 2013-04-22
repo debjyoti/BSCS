@@ -1,11 +1,17 @@
 BSCS::Application.routes.draw do
-  get "profiles/show"
-
-  devise_for :users
 
   root :to => 'questions#index'
-  resources :questions
+
+  resources :questions do
+    put 'upvote'
+  end
+  
+
   resources :answers, except: [:new, :show, :index]
+
+  devise_for :users
+  
+  resources :profiles, except: [:new, :create, :edit, :update, :destroy, :index]
 
 
   # The priority is based upon order of creation:

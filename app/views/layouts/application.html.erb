@@ -22,6 +22,14 @@
           
           <ul class="nav pull-right">
             <% if user_signed_in? %>
+              <li class="dropdown">
+                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"><%=current_user.name%><b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li><%= link_to "My Home", profile_path(current_user.id) %> </li>
+                  <li><%= link_to "Edit Profile", edit_user_registration_path%>  </li>
+                </ul>
+              </li>
+              <li class="divider-vertical"></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
             <%else%>
               <li><%= link_to "Sign In", new_user_session_path %> </li>

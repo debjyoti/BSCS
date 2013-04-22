@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   has_many :questions
   has_many :answers
+  has_many :votes
 
   mount_uploader :image, ImageUploader
 end

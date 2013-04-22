@@ -3,4 +3,5 @@ class Answer < ActiveRecord::Base
   validates :answer_text, presence: true
   belongs_to :question
   belongs_to :user
+  has_many :votes, as: :votable
 end

@@ -3,4 +3,5 @@ class Question < ActiveRecord::Base
   validates :title, :question_text, presence: true
   belongs_to :user
   has_many :answers, dependent: :destroy
+  has_many :votes, as: :votable
 end

@@ -1,38 +1,50 @@
 <%- model_class = Question -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1> BSCS Community </h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:question_text) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questions.each do |question| %>
+
+<% if @users.count > 3 and @users.count < 30 %>
+  <table class = "table table-bordered">
+    <tbody>
+      <% col = 1 %>
       <tr>
-        <td><%= link_to question.id, question_path(question) %></td>
-        <td><%= question.question_text %></td>
-        <td><%= question.user_id %></td>
-        <td><%=l question.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_question_path(question), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      question_path(question),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
+      <% @users.each do |user| %>
+          <% if col <= 3 %>
+            <td> <%= image_tag user.image_url(:thumb).to_s, class: "image-polaroid" %><br /> <%= user.name %></td>
+            <% col += 1 %>
+          <% else %>
+            </tr>
+            <tr>
+            <td> <%= image_tag user.image_url(:thumb).to_s, class: "image-polaroid" %><br /> <%= user.name %></td>
+            <% col = 2 %>
+          <% end %>
+      <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<%end%>
+
+<% if @questions.count > 0 %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><strong>QUESTIONS</strong></th>
+        <th>Asked On</th>
+        <th>Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @questions.each do |question| %>
+        <tr>
+          <td><%= link_to question.title, question_path(question) %></td>
+          <td><%=question.created_at.strftime("%d/%m/%Y") %></td>
+          <td><%= question.answers.count %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_question_path,
-            :class => 'btn btn-primary' %>
+  new_question_path,
+  :class => 'btn btn-primary' %>

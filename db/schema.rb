@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415133513) do
+ActiveRecord::Schema.define(:version => 20130421154427) do
 
   create_table "answers", :force => true do |t|
     t.text     "answer_text"
@@ -19,17 +19,15 @@ ActiveRecord::Schema.define(:version => 20130415133513) do
     t.integer  "user_id"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "votes",       :default => 0
     t.boolean  "correct",     :default => false
   end
 
   create_table "questions", :force => true do |t|
     t.text     "question_text"
     t.integer  "user_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "title"
-    t.integer  "votes",         :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -53,5 +51,13 @@ ActiveRecord::Schema.define(:version => 20130415133513) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
 end

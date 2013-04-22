@@ -1,11 +1,16 @@
 <div class="page-header">
-  <h1> <%=@question.title%> </h1>
+  <h3> <%=@question.title%> </h3>
 </div>
 
-<h4><%= @question.answers.count %> answers</h4>
+<h5> <%=@question.question_text%> </h5>
+Vote: <%=@question.votes.count%>
+<%= link_to "UPVOTE", question_upvote_path(@question.id), method: :put %>
 <hr>
 
-<%=form_for @answer do |f| %>
-<%end%>
 
-
+<% if user_signed_in? %>
+  <%=form_for @answer do |f| %>
+  <%end%>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %> to answer.
+<% end%>

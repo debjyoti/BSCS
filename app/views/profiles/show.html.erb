@@ -2,7 +2,58 @@
   <h1><%=@user.name %></h1>
 </div>
 
-<%= image_tag @user.image_url.to_s, class: "image-polaroid" %>
-<%= image_tag @user.image_url(:thumb).to_s, class: "image-polaroid" %>
+<p>
+<h4>Level: <%= @user.level %> </h4>
+<h4>Points: <%= @user.points %> </h4>
+</p>
+
+<h4> Posted Questions: <%=@user.questions.count%> </h4>
+<% if @user.questions.count > 0 %>
+  <table class = "table table-hover">
+    <thead>
+      <tr>
+        <th> <strong>QUESTIONS</strong> </th>
+        <th> <strong>ASKED ON</strong> </th>
+        <th> <strong>ANSWERS</strong> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.questions.each do |question| %>
+        <tr>
+          <th> <%=link_to question.title, question_path(question)%> </th>
+          <th> <%=question.created_at.strftime("%d/%m/%Y")%> </th>
+          <th> <%=question.answers.count%> </th>
+        </tr>
+      <% end%>
+    </tbody>
+  </table>
+<% end %>
+
+<h4> Posted Answers: <%=@user.answers.count%> </h4>
+<% if @user.answers.count > 0 %>
+  <table class = "table table-hover">
+    <thead>
+      <tr>
+        <th> <strong>QUESTIONS</strong> </th>
+        <th> <strong>ANSWERED ON</strong> </th>
+        <th> <strong>VOTES</strong> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.answers.each do |answer| %>
+        <tr>
+          <th> <%=link_to answer.question.title, question_path(answer.question)%> </th>
+          <th> <%=answer.created_at.strftime("%d/%m/%Y")%> </th>
+          <th> <%=answer.votes%></th>
+        </tr>
+      <% end%>
+    </tbody>
+  </table>
+<% end %>
+
+<% content_for :right_side_panel do %>
+  <br /> <br />
+  <%= image_tag @user.image_url.to_s, class: "image-polaroid" %>
+<%end%>
 
 

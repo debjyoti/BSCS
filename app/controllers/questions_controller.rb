@@ -2,7 +2,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.order("created_at desc")
+    @users = User.order("created_at")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,4 +82,15 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upvote
+    @question = Question.find(params[:question_id])
+    find_vote =Vote.where("user_id=? and votable_type = 'Question' and votable_id = ?", current_user.id, @question.id) 
+    if(find_vote.count == 0)
+      new_vote = current_user.votes.create(votable_id: @question.id, votable_type: 'Question')
+      new_vote.save
+    end
+    redirect_to :back
+  end
+
 end
