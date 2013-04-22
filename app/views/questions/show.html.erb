@@ -2,9 +2,16 @@
   <h3> <%=@question.title%> </h3>
 </div>
 
-<h5> <%=@question.question_text%> </h5>
-Vote: <%=@question.votes.count%>
-<%= link_to "UPVOTE", question_upvote_path(@question.id), method: :put %>
+<div class="row-fluid">
+  <div class="span2">
+    <div style="text-align:center"><%= link_to "UPVOTE", question_upvote_path(@question.id), method: :put %> </div>
+    <h4 style="text-align:center"><%=@question.votes.count%> </h4>
+    <div style="text-align:center"><%= link_to "DNVOTE", question_upvote_path(@question.id), method: :put %> </div>
+  </div>
+  <div class="span6">
+    <h5> <%=@question.question_text%> </h5>
+  </div>
+</div>
 <hr>
 
 
