@@ -1,0 +1,10 @@
+<div class="row-fluid">
+  <div class="span2">
+    <h4 style="text-align:center"><%=answer.votes.count%> </h4>
+    <div style="text-align:center"><%= link_to "UPVOTE", question_answer_upvote_path(answer.question.id, answer.id), method: :put %> </div>
+  </div>
+  <div class="span10">
+    <%=sanitize answer.answer_text %>
+  </div>
+</div>
+<hr>

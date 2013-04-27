@@ -4,10 +4,10 @@ BSCS::Application.routes.draw do
 
   resources :questions do
     put 'upvote'
+    resources :answers, except: [:new, :show, :index] do
+      put 'upvote'
+    end
   end
-  
-
-  resources :answers, except: [:new, :show, :index]
 
   devise_for :users
   

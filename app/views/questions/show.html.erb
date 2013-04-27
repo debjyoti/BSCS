@@ -7,16 +7,23 @@
     <h4 style="text-align:center"><%=@question.votes.count%> </h4>
     <div style="text-align:center"><%= link_to "UPVOTE", question_upvote_path(@question.id), method: :put %> </div>
   </div>
-  <div class="span6">
+  <div class="span10">
     <h5> <%=@question.question_text%> </h5>
   </div>
 </div>
 <hr>
 
+<div>
+  <div id="answers">
+    <%= render :partial => "answers/create", :locals => { :answers => @question.answers } %>
+  </div>
+</div>
 
 <% if user_signed_in? %>
-  <%=form_for @answer do |f| %>
-  <%end%>
+  <h4> Your Answer: </h4>
+  <div id="create_answer_form">
+    <%= render :partial => 'answers/form' %>
+  </div>
 <% else %>
   <%= link_to "Sign In", new_user_session_path %> to answer.
 <% end%>

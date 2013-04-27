@@ -1,0 +1,4 @@
+<%= form_for( [@question, @answer],  :html => {:class => 'form-horizontal'}, remote: true) do |f| %>
+  <%= f.text_area :answer_text, rows: 15, :class => 'input-block-level' %>
+  <%= f.submit "Submit", :class => 'btn' %>
+<% end %>
