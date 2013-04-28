@@ -1,7 +1,6 @@
 <div class="row-fluid">
-  <div class="span2">
-    <h4 style="text-align:center"><%=answer.votes.count%> </h4>
-    <div style="text-align:center"><%= link_to "UPVOTE", question_answer_upvote_path(answer.question.id, answer.id), method: :put %> </div>
+  <div class="span2" id="answer<%=answer.id%>_vote">
+    <%= render partial: 'answers/vote', locals: { answer: answer } %>
   </div>
   <div class="span10">
     <%=sanitize answer.answer_text %>

@@ -1,0 +1,2 @@
+<h4 style="text-align:center"><%=answer.votes.count%> </h4>
+<div style="text-align:center"><%= link_to "UPVOTE", question_answer_upvote_path(answer.question.id, answer.id), method: :put, remote: true %> </div>
