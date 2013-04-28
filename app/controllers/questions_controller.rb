@@ -89,9 +89,10 @@ class QuestionsController < ApplicationController
     if(find_vote.count == 0)
       new_vote = current_user.votes.create(votable_id: @question.id, votable_type: 'Question')
       new_vote.save
-      redirect_to :back
-    else
-      redirect_to :back, notice: 'You can only vote once.'
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
     end
   end
 
