@@ -1,2 +1,6 @@
 <h4 style="text-align:center"><%=question.votes.count%> </h4>
-<div style="text-align:center"><%= link_to "UPVOTE", question_upvote_path(question.id), method: :put, remote: true %> </div>
+<% if user_signed_in? %>
+  <div style="text-align:center"><%= link_to "UPVOTE", question_upvote_path(question.id), method: :put, remote: true%> </div>
+<%else%>
+  <div style="text-align:center"><%= link_to "UPVOTE", question_upvote_path(question.id), method: :put, remote: true , title: "<a href='/users/sign_in'>Please Sign In</a>", rel: 'popover', "data-content"=> "You can't vote unless you are signed in :(", "data-html" => "true"%> </div>
+<%end%>

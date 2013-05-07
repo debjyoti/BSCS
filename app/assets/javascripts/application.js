@@ -14,14 +14,3 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
-
-function showLoginMsg(div)
-{
-  div.style.display = 'inline';
-  div.innerHTML = 'Hi';
-}
-
-function hideLoginMsg(div)
-{
-  div.style.display = 'none';
-}

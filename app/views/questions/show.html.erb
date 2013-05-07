@@ -3,10 +3,9 @@
 </div>
 
 <div class="row-fluid">
-  <div class="span2" id="question_vote" onMouseOut="hideLoginMsg(question_vote_login)" onMouseOver="showLoginMsg(question_vote_login)">
+  <div class="span2" id="question_vote">
     <%= render partial: "vote", locals: { question: @question } %>
   </div>
-  <div style="display:none" id='question_vote_login'></div>
   <div class="span10">
     <h5> <%=@question.question_text%> </h5>
   </div>
