@@ -8,6 +8,7 @@
   </div>
   <div class="span10">
     <h5> <%=@question.question_text%> </h5>
+    <div class="pull-right"> <%= image_tag @question.user.image_url(:thumb).to_s, class: "image-polaroid" %> <%=@question.user.name %> </div>
   </div>
 </div>
 <hr>

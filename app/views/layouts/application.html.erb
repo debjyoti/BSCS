@@ -21,6 +21,8 @@
           <div class="brand">BSCS Community</div>
           
           <ul class="nav pull-right">
+            <li><%= link_to 'Ask', new_question_path %></li>
+            <li class="divider-vertical"></li>
             <% if user_signed_in? %>
               <li class="dropdown">
                 <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html"><%=current_user.name%><b class="caret"></b></a>

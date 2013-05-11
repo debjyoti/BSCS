@@ -4,6 +4,8 @@
   </div>
   <div class="span10">
     <%=sanitize answer.answer_text %>
+    <br \>
+    <div class="pull-right"> <%= image_tag answer.user.image_url(:thumb).to_s, class: "image-polaroid" %> <%=answer.user.name %> </div>
   </div>
 </div>
 <hr>

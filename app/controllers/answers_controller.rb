@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
 
   def create 
+    params[:answer][:user_id]=current_user.id
     @question = Question.find(params[:question_id])
     respond_to do |format|
       if @question.answers.create(params[:answer])
