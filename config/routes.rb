@@ -2,6 +2,8 @@ BSCS::Application.routes.draw do
 
   root :to => 'questions#index'
 
+  resources :articles
+
   resources :questions do
     put 'upvote'
     resources :answers, except: [:new, :show, :index] do
