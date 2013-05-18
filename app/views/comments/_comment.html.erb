@@ -1,0 +1,12 @@
+<dt>
+<%= sanitize comment.user.name %> (<%=comment.created_at.strftime("%d/%m/%Y")%>):
+</dt>
+<dd>
+<%= sanitize comment.comment_text %> </br></br>
+<div >
+  <% if user_signed_in? and comment.user_id == current_user.id %>
+    <%= link_to 'edit', edit_article_comment_path(comment.article.id, comment.id), :class => 'btn', :remote => :true %>
+    <%= link_to 'delete', article_comment_path(comment.article.id, comment.id), :method => 'delete', :class => 'btn btn-danger', remote: true %>
+  <% end %>
+</div>
+</dd>

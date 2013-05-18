@@ -1,0 +1,9 @@
+<% comments.each do |comment|%>
+  <% if (comment.id ) then %>
+    <div class="well" id="comment_box_<%=comment.id%>">
+      <div id="comment_<%=comment.id%>">
+        <%= render comment %>
+      </div>
+    </div>
+  <%end%>
+<%end%>

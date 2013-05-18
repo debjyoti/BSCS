@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => "Manage Comments"%></h1>
+</div>
+<% @comments.each do |comment| %>
+  <div class="well" id="comment_box_<%=comment.id%>" >
+    <strong>Article - <%= comment.article.heading %></strong>
+    <div id="comment_<%=comment.id%>">
+      <%= render comment %>
+    </div>
+  </div>
+<% end %>

@@ -7,3 +7,17 @@
   <%= sanitize @article.content %>
 </div>
 
+<div>
+  </br></br></br>
+  <h4> Comments </h4>
+  <dl>
+    <div id="comments">
+      <%= render :partial => "comments/create", :locals => { :comments => @article.comments } %>
+    </div>
+  </dl>
+</div>
+
+<div id="create_comment_form">
+  <%= render :partial => 'comments/form' %>
+</div>
+

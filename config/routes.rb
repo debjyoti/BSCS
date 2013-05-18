@@ -2,7 +2,9 @@ BSCS::Application.routes.draw do
 
   root :to => 'questions#index'
 
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
   resources :questions do
     put 'upvote'
